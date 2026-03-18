@@ -1,0 +1,37 @@
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        height: 400px;
+    }
+
+    .hero-content {
+        margin: 0 20px;
+        padding: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+    }
+
+    .insurance-grid {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .quiz-section {
+        flex-direction: column;
+    }
+
+    .review-carousel {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .review-card {
+        width: 100%;
+    }
+}
