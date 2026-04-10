@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account | My Specs Com</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .profile-container {
+            padding: 60px 0;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+        }
+
+        .profile-sidebar {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .user-info-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .user-avatar {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin: 0 auto 15px;
+            font-weight: 800;
+            box-shadow: 0 5px 15px rgba(166, 23, 30, 0.3);
+        }
+
+        .profile-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .profile-nav ul li {
+            padding: 15px 15px;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #555;
+        }
+
+        .profile-nav ul li i {
+            width: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .profile-nav ul li:hover {
+            background: #fdfaf0;
+            color: var(--primary-color);
+        }
+
+        .profile-nav ul li.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .profile-nav ul li.logout {
+            color: #ff4d4d;
+            margin-top: 20px;
+            border: 1px solid #ffebeb;
+        }
+
+        .profile-nav ul li.logout:hover {
+            background: #fff5f5;
+        }
+
+        .profile-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            min-height: 600px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Dashboard Styles */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            border-color: var(--accent-color);
+            background: white;
+            transform: translateY(-5px);
+        }
+
+        .stat-card i {
+            font-size: 30px;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .stat-card .value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .stat-card .label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Order Card Styles */
+        .order-card {
+            border: 1px solid #efefef;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            background: #fff;
+            transition: var(--transition);
+        }
+
+        .order-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-color: var(--accent-color);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        /* Address Card Styles */
+        .address-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .address-card {
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .address-card.default {
+            border-color: var(--accent-color);
+            background: #fdfaf0;
+        }
+
+        .default-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--accent-color);
+            color: white;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 992px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-sidebar {
+                position: static;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <div class="container">
+            <div class="profile-container">
+                <aside class="profile-sidebar">
+                    <div class="user-info-header">
+                        <div class="user-avatar" id="side-initials">JD</div>
+                        <h3 id="side-name">John Doe</h3>
+                        <p id="side-email" style="color: #666; font-size: 13px;">john@example.com</p>
+                    </div>
+                    <nav class="profile-nav">
+                        <ul id="profile-tabs-nav">
+                            <li class="active" data-tab="dashboard"><i class="fa-solid fa-house"></i> Dashboard</li>
+                            <li data-tab="orders"><i class="fa-solid fa-box"></i> Order History</li>
+                            <li data-tab="wishlist"><i class="fa-solid fa-heart"></i> My Wishlist</li>
+                            <li data-tab="addresses"><i class="fa-solid fa-location-dot"></i> Addresses</li>
+                            <li data-tab="settings"><i class="fa-solid fa-gear"></i> Account Settings</li>
+                            <li class="logout" onclick="window.appAuth.logout()"><i
+                                    class="fa-solid fa-right-from-bracket"></i> Logout</li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <div class="profile-content">
+                    <!-- Dashboard Tab -->
+                    <div id="dashboard" class="tab-content active">
+                        <h2 style="margin-bottom: 30px;">Welcome back, <span id="dash-name-first">User</span>!</h2>
+                        <div class="dashboard-grid">
+                            <div class="stat-card">
+                                <i class="fa-solid fa-bag-shopping"></i>
+                                <span class="value" id="stat-orders">0</span>
+                                <span class="label">Total Orders</span>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fa-solid fa-heart"></i>
+                                <span class="value" id="stat-wishlist">0</span>
+                                <span class="label">In Wishlist</span>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span class="value" id="stat-addresses">0</span>
+                                <span class="label">Saved Addresses</span>
+                            </div>
+                        </div>
+
+                        <div class="recent-activity">
+                            <h3 style="margin-bottom: 20px;">Recent Activity</h3>
+                            <div id="recent-order-alert">
+                                <!-- Dynamic message based on state -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orders Tab -->
+                    <div id="orders" class="tab-content">
+                        <h2 style="margin-bottom: 30px;">Order History</h2>
+                        <div id="full-order-list">
+                            <!-- Orders dynamic -->
+                        </div>
+                    </div>
+
+                    <!-- Wishlist Tab -->
+                    <div id="wishlist" class="tab-content">
+                        <h2 style="margin-bottom: 30px;">My Wishlist</h2>
+                        <div id="profile-favorites-grid" class="product-grid"
+                            style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px;">
+                            <!-- Favorites dynamic -->
+                        </div>
+                    </div>
+
+                    <!-- Addresses Tab -->
+                    <div id="addresses" class="tab-content">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                            <h2 style="margin: 0;">My Addresses</h2>
+                            <button class="btn accent" style="padding: 8px 15px; font-size: 14px;">+ ADD NEW</button>
+                        </div>
+                        <div class="address-grid" id="address-list">
+                            <!-- Addresses dynamic -->
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div id="settings" class="tab-content">
+                        <h2 style="margin-bottom: 30px;">Account Settings</h2>
+                        <form id="profile-update-form" style="max-width: 500px;">
+                            <div class="form-group" style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Full Name</label>
+                                <input type="text" id="edit-name" class="form-control"
+                                    style="width: 100%; border: 1px solid #ddd; padding: 12px; border-radius: 6px;">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Email
+                                    Address</label>
+                                <input type="email" id="edit-email" class="form-control"
+                                    style="width: 100%; border: 1px solid #ddd; padding: 12px; border-radius: 6px;"
+                                    readonly>
+                            </div>
+                            <button type="submit" class="btn primary"
+                                style="width: 100%; padding: 15px; border-radius: 6px; font-weight: 800;">SAVE
+                                CHANGES</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Custom JS -->
+    <script src="../js/cart.js"></script>
+    <script src="../js/favorites.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!window.appAuth || !window.appAuth.isAuthenticated()) {
+                window.location.href = '/pages/login-register.html';
+                return;
+            }
+
+            const user = window.appAuth.getCurrentUser();
+            const favorites = window.appFavorites;
+
+            // Initial UI Setup
+            updateSidebarUI(user);
+            renderStats(user);
+            renderOrders(user);
+            renderWishlist();
+            renderAddresses();
+
+            // Tab Switching Logic
+            const tabs = document.querySelectorAll('#profile-tabs-nav li[data-tab]');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.tab;
+
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    contents.forEach(c => c.classList.remove('active'));
+                    document.getElementById(target).classList.add('active');
+                });
+            });
+
+            function updateSidebarUI(user) {
+                document.getElementById('side-name').textContent = user.name;
+                document.getElementById('edit-name').value = user.name;
+                document.getElementById('side-email').textContent = user.email;
+                document.getElementById('edit-email').value = user.email;
+                document.getElementById('side-initials').textContent = user.name.split(' ').map(n => n[0]).join('').toUpperCase();
+                document.getElementById('dash-name-first').textContent = user.name.split(' ')[0];
+            }
+
+            function renderStats(user) {
+                const orders = window.appAuth.getCurrentUserOrders();
+                document.getElementById('stat-orders').textContent = orders.length;
+                document.getElementById('stat-wishlist').textContent = window.appAuth.getWishlistCount();
+                document.getElementById('stat-addresses').textContent = window.appAuth.getAddresses().length;
+
+                const recentAlert = document.getElementById('recent-order-alert');
+                if (orders.length > 0) {
+                    const latest = orders[0];
+                    recentAlert.innerHTML = `
+                        <div style="background: #fdfaf0; border: 1px solid var(--accent-color); padding: 20px; border-radius: 8px; display: flex; align-items: center; gap: 20px;">
+                            <div style="font-size: 24px; color: var(--accent-color);"><i class="fa-solid fa-truck-fast"></i></div>
+                            <div>
+                                <p style="font-weight: 700; margin-bottom: 5px;">Your order #${latest.orderId} is ${latest.status}</p>
+                                <a href="/pages/tracking.html?id=${latest.orderId}" style="color: var(--primary-color); font-size: 13px; font-weight: 800;">VEW DETAILS</a>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    recentAlert.innerHTML = '<p style="color: #888;">No recent orders. Start shopping to see updates here!</p>';
+                }
+            }
+
+            function renderOrders(user) {
+                const orders = window.appAuth.getCurrentUserOrders();
+                const list = document.getElementById('full-order-list');
+                if (orders.length === 0) {
+                    list.innerHTML = '<div style="text-align:center; padding: 60px;"><i class="fa-solid fa-box-open" style="font-size: 40px; color: #ddd; margin-bottom: 20px; display: block;"></i><p>No orders yet.</p></div>';
+                } else {
+                    list.innerHTML = orders.map(order => `
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div>
+                                    <span style="font-weight: 700; font-size: 16px;">Order #${order.orderId}</span>
+                                    <span style="margin-left: 20px; color: #999; font-size: 13px;">${new Date(order.date).toLocaleDateString()}</span>
+                                </div>
+                                <span style="color: #27ae60; font-weight: 800; font-size: 13px; text-transform: uppercase;">${order.status}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div style="display: flex; gap: 10px;">
+                                    ${order.items.slice(0, 4).map(item => `<img src="${item.image}" style="width: 60px; height: 60px; object-fit: contain; border: 1px solid #eee; border-radius: 6px;">`).join('')}
+                                    ${order.items.length > 4 ? `<span style="align-self: center; font-size: 12px; font-weight: 700; color: #888;">+${order.items.length - 4}</span>` : ''}
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 20px; font-weight: 800; color: var(--primary-color); margin-bottom: 10px;">₹${order.total.toLocaleString()}</div>
+                                    <a href="/pages/tracking.html?id=${order.orderId}" class="btn accent" style="padding: 8px 15px; font-size: 12px; text-decoration: none; border-radius: 4px;">TRACK ORDER</a>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            function renderWishlist() {
+                const favs = favorites.getFavorites();
+                const grid = document.getElementById('profile-favorites-grid');
+                if (favs.length === 0) {
+                    grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 60px;"><i class="fa-solid fa-heart-crack" style="font-size: 40px; color: #ddd; margin-bottom: 20px; display: block;"></i><p>Your wishlist is empty.</p></div>';
+                } else {
+                    grid.innerHTML = favs.map(p => `
+                        <div class="product-card" style="box-shadow: none; border: 1px solid #eee;">
+                            <img src="${p.image}" alt="${p.name}">
+                            <div class="product-info">
+                                <h3>${p.name}</h3>
+                                <p class="price">₹${p.price.toLocaleString()}</p>
+                                <button onclick="window.appCart.addItem(${JSON.stringify(p).replace(/"/g, '&quot;')})" style="width:100%; padding: 10px; background: var(--primary-color); color: white; border-radius: 4px; font-weight: 700; margin-top: 10px;">ADD TO CART</button>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+
+            function renderAddresses() {
+                const addrs = window.appAuth.getAddresses();
+                const list = document.getElementById('address-list');
+                list.innerHTML = addrs.map(a => `
+                    <div class="address-card ${a.isDefault ? 'default' : ''}">
+                        ${a.isDefault ? '<span class="default-badge">DEFAULT</span>' : ''}
+                        <h4 style="margin-bottom: 10px; color: var(--primary-color);">${a.type}</h4>
+                        <p style="font-size: 14px; line-height: 1.5; color: #555;">
+                            ${a.address}<br>
+                            ${a.city}, ${a.state}<br>
+                            PIN: ${a.zip}
+                        </p>
+                        <div style="margin-top: 15px; display: flex; gap: 15px;">
+                            <button style="background:none; border:none; color: var(--accent-color); font-weight: 700; font-size: 12px; cursor: pointer;">EDIT</button>
+                            <button style="background:none; border:none; color: #999; font-weight: 700; font-size: 12px; cursor: pointer;">REMOVE</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        });
+    </script>
+</body>
+
+</html>

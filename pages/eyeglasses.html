@@ -4,32 +4,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eyeglasses Collection | GlassesUSA Clone</title>
-    <!-- Custom CSS -->
+    <title>Eyeglasses Collection | My Specs Com</title>
+    <meta name="description"
+        content="Shop our premium eyeglasses collection. Filter by gender, shape, brand, color, and more.">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/components/product-card.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/pages/eyeglasses.css">
+    <link rel="stylesheet" href="../css/collection-filters.css">
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
     <div id="navbar-placeholder"></div>
 
     <main>
-        <div id="trust-bar-placeholder"></div>
-        <div id="eyeglasses-collection-placeholder"></div>
-        <div id="eyeglasses-grid-placeholder"></div>
+        <!-- Brand Slider Row (original design) -->
+        <link rel="stylesheet" href="../css/pages/eyeglasses.css">
+        <section class="eyeglasses-header-nav">
+            <div class="brand-slider">
+                <button class="slider-arrow prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="brand-logos">
+                    <div class="brand-logo-item">Ray-Ban</div>
+                    <div class="brand-logo-item">Oakley</div>
+                    <div class="brand-logo-item">MICHAEL KORS</div>
+                    <div class="brand-logo-item">VERSACE</div>
+                    <div class="brand-logo-item">TOM FORD</div>
+                    <div class="brand-logo-item">Persol</div>
+                    <div class="brand-logo-item">BURBERRY</div>
+                    <div class="brand-logo-item">COSTA</div>
+                </div>
+                <button class="slider-arrow next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="collection-title">
+                <h1>Eyeglasses Collection <span id="product-count"></span></h1>
+            </div>
+            <div class="filter-pills">
+                <button class="pill"
+                    onclick="window.collectionPage && window.collectionPage.setQuickFilter('gender','Women')">Women's
+                    Eyeglasses</button>
+                <button class="pill"
+                    onclick="window.collectionPage && window.collectionPage.setQuickFilter('gender','Men')">Men's
+                    Eyeglasses</button>
+                <button class="pill"
+                    onclick="window.collectionPage && window.collectionPage.setQuickFilter('size','Small')">Kids'
+                    Eyeglasses</button>
+                <button class="pill" onclick="window.collectionPage && window.collectionPage.clearFilters()">New
+                    Arrivals</button>
+                <button class="pill"
+                    onclick="window.collectionPage && window.collectionPage.setQuickFilter('brands','Ray-Ban')">Ray-Ban</button>
+            </div>
+        </section>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar-wrapper" id="filter-bar-wrapper">
+            <div class="filter-bar" id="filter-bar"></div>
+            <div id="active-filters-bar" class="active-filters-bar"></div>
+        </div>
+
+        <!-- Products -->
+        <div class="collection-body">
+            <p class="results-info" id="results-info"></p>
+            <div class="collection-grid" id="collection-grid"></div>
+        </div>
+
+        <div id="stores-banner-placeholder"></div>
     </main>
 
     <div id="footer-placeholder"></div>
+    <div id="cart-drawer-placeholder"></div>
 
-    <!-- Custom JS -->
+    <!-- Scripts -->
+    <script src="../js/cart.js"></script>
+    <script src="../js/favorites.js"></script>
+    <script src="../js/auth.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/collection-filters.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            window.collectionPage = new CollectionPage('Eyeglasses');
+            // Update count
+            const countEl = document.getElementById('product-count');
+            if (countEl) {
+                const count = PRODUCTS.filter(p => p.category === 'Eyeglasses').length;
+                countEl.textContent = '(' + count + ' Items)';
+            }
+        });
+    </script>
 </body>
 
 </html>

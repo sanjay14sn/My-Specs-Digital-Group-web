@@ -1,0 +1,91 @@
+<section class="stores-banner">
+    <div class="container">
+        <div class="stores-content">
+            <div class="stores-text">
+                <h2>Find a Store Near You</h2>
+                <p>Experience our luxury collections in person. Visit one of our 50+ premium locations across the
+                    country.</p>
+                <div class="stores-actions">
+                    <a href="/pages/stores.html" class="btn accent">VIEW ALL STORES</a>
+                    <button class="btn transparent">USE MY LOCATION</button>
+                </div>
+            </div>
+            <div class="stores-image">
+                <i class="fa-solid fa-shop"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .stores-banner {
+        background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+        padding: 80px 0;
+        color: var(--white);
+        margin-top: 60px;
+    }
+
+    .stores-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 60px;
+    }
+
+    .stores-text {
+        flex: 1;
+    }
+
+    .stores-text h2 {
+        font-size: 42px;
+        font-weight: 900;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: -1px;
+    }
+
+    .stores-text p {
+        font-size: 18px;
+        opacity: 0.9;
+        margin-bottom: 35px;
+        line-height: 1.6;
+    }
+
+    .stores-actions {
+        display: flex;
+        gap: 20px;
+    }
+
+    .stores-actions .btn {
+        padding: 15px 30px;
+        font-weight: 800;
+        border-radius: 6px;
+    }
+
+    .stores-actions .btn.transparent {
+        border: 2px solid var(--white);
+        color: var(--white);
+        background: transparent;
+    }
+
+    .stores-image {
+        font-size: 120px;
+        color: var(--accent-color);
+        opacity: 0.3;
+    }
+
+    @media (max-width: 768px) {
+        .stores-content {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .stores-actions {
+            justify-content: center;
+        }
+
+        .stores-image {
+            display: none;
+        }
+    }
+</style>

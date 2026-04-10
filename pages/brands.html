@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popular Brands | My Specs Com</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/components/product-card.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/pages/home.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <style>
+        .filter-section {
+            background: var(--primary-color);
+            padding: 40px 0;
+            color: white;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .brand-filters {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .brand-filter-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 4px;
+            border: 1px solid var(--accent-color);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .brand-filter-btn:hover,
+        .brand-filter-btn.active {
+            background: var(--accent-color);
+            color: var(--black);
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <section class="filter-section">
+            <div class="container">
+                <h1 style="font-size: 42px; font-weight: 900; letter-spacing: 2px;">DISCOVER THE ELITE</h1>
+                <p style="margin-top: 10px; font-size: 18px; opacity: 0.9;">Curated collections from the world's most
+                    prestigious brands.</p>
+                <div class="brand-filters" id="brand-filters">
+                    <button class="brand-filter-btn active" data-brand="all">All Brands</button>
+                    <button class="brand-filter-btn" data-brand="Ray-Ban">Ray-Ban</button>
+                    <button class="brand-filter-btn" data-brand="Oakley">Oakley</button>
+                    <button class="brand-filter-btn" data-brand="Muse">Muse</button>
+                    <button class="brand-filter-btn" data-brand="Ottoto">Ottoto</button>
+                </div>
+            </div>
+        </section>
+
+        <div id="brands-grid-placeholder" class="container" style="margin-bottom: 100px;">
+            <div class="product-grid" id="branded-products-grid">
+                <!-- Products will be injected here -->
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <div id="cart-drawer-placeholder"></div>
+
+    <!-- Custom JS -->
+    <script src="../js/cart.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

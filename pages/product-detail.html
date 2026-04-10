@@ -4,32 +4,1323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amelia E. Nettle Tortoise Eyeglasses | GlassesUSA Clone</title>
-    <!-- Custom CSS -->
+    <title>Product Details | My Specs Com</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/pages/pdp.css">
     <link rel="stylesheet" href="../css/responsive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ─── Reset & vars ─── */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --red: #A6171E;
+            --dark: #111;
+            --gray: #636363;
+            --border: #e8e8e8;
+            --bg: #f8f8f8
+        }
+
+        /* ─── Breadcrumb ─── */
+        .breadcrumb {
+            padding: 12px 0;
+            font-size: 13px;
+            color: #999;
+            border-bottom: 1px solid var(--border);
+            background: #fff
+        }
+
+        .breadcrumb .inner {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+            flex-wrap: wrap
+        }
+
+        .breadcrumb a {
+            color: #999;
+            text-decoration: none
+        }
+
+        .breadcrumb a:hover {
+            color: var(--red)
+        }
+
+        .breadcrumb .sep {
+            color: #ccc
+        }
+
+        .breadcrumb .cur {
+            color: #333;
+            font-weight: 600
+        }
+
+        /* ─── PDP top ─── */
+        .pdp-wrap {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 32px 24px 60px;
+            display: grid;
+            grid-template-columns: 1fr 440px;
+            gap: 48px;
+            align-items: start
+        }
+
+        /* ─── Gallery ─── */
+        .gallery {
+            position: sticky;
+            top: 90px
+        }
+
+        .gallery-main {
+            background: var(--bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in
+        }
+
+        .gallery-main img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            transition: transform .3s
+        }
+
+        .gallery-main:hover img {
+            transform: scale(1.04)
+        }
+
+        .live-try {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #111;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            letter-spacing: .5px
+        }
+
+        .gallery-sub {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 10px
+        }
+
+        .sub-img {
+            background: var(--bg);
+            border-radius: 8px;
+            border: 1.5px solid var(--border);
+            padding: 10px;
+            cursor: pointer;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color .2s;
+            overflow: hidden
+        }
+
+        .sub-img img {
+            width: 100%;
+            object-fit: contain
+        }
+
+        .sub-img.active,
+        .sub-img:hover {
+            border-color: var(--red)
+        }
+
+        .show-more {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: background .2s
+        }
+
+        .show-more:hover {
+            background: var(--bg)
+        }
+
+        .incl-bar {
+            margin-top: 14px;
+            padding: 12px 16px;
+            background: var(--bg);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            font-size: 12px;
+            font-weight: 600;
+            color: #444;
+            border: 1px solid var(--border)
+        }
+
+        .incl-bar .lbl {
+            font-weight: 800;
+            color: var(--red);
+            white-space: nowrap
+        }
+
+        .incl-bar span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #555
+        }
+
+        .incl-bar .div {
+            color: #ccc
+        }
+
+        /* ─── Right panel ─── */
+        .pdp-right {}
+
+        .brand-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px
+        }
+
+        .brand-name {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--red)
+        }
+
+        .wish-btn {
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 16px;
+            background: #fff;
+            transition: all .2s
+        }
+
+        .wish-btn:hover,
+        .wish-btn.active {
+            color: var(--red);
+            border-color: var(--red)
+        }
+
+        .pdp-name {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--dark);
+            line-height: 1.2;
+            margin-bottom: 10px
+        }
+
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px
+        }
+
+        .stars {
+            color: #f5a623;
+            font-size: 15px
+        }
+
+        .rating-count {
+            font-size: 13px;
+            color: var(--red);
+            font-weight: 700;
+            text-decoration: underline;
+            cursor: pointer
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 16px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 18px
+        }
+
+        .sale-price {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--dark)
+        }
+
+        .orig-price {
+            font-size: 15px;
+            color: #aaa;
+            text-decoration: line-through
+        }
+
+        .save-tag {
+            padding: 3px 10px;
+            background: #fff5cc;
+            color: #b45309;
+            font-size: 11px;
+            font-weight: 800;
+            border-radius: 10px;
+            border: 1px solid #fde68a
+        }
+
+        /* Colors */
+        .opt-label {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #666;
+            margin-bottom: 8px
+        }
+
+        .color-dots {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+            flex-wrap: wrap
+        }
+
+        .color-dot {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            cursor: pointer;
+            transition: all .2s;
+            flex-shrink: 0
+        }
+
+        .color-dot.active,
+        .color-dot:hover {
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(166, 23, 30, .15)
+        }
+
+        /* Size */
+        .size-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px
+        }
+
+        .size-val {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--dark)
+        }
+
+        .find-size {
+            font-size: 12px;
+            color: var(--red);
+            font-weight: 700;
+            text-decoration: underline;
+            cursor: pointer
+        }
+
+        /* CTA */
+        .btn-cart {
+            width: 100%;
+            padding: 16px;
+            background: var(--red);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            transition: background .2s;
+            letter-spacing: .5px
+        }
+
+        .btn-cart:hover {
+            background: #8a1216
+        }
+
+        .btn-lenses {
+            width: 100%;
+            padding: 15px;
+            background: #fff;
+            color: var(--red);
+            border: 2px solid var(--red);
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all .2s;
+            margin-bottom: 20px;
+            letter-spacing: .5px
+        }
+
+        .btn-lenses:hover {
+            background: var(--red);
+            color: #fff
+        }
+
+        /* Accordion */
+        .accord-item {
+            border-top: 1px solid var(--border)
+        }
+
+        .accord-item:last-child {
+            border-bottom: 1px solid var(--border)
+        }
+
+        .accord-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            user-select: none
+        }
+
+        .accord-head i {
+            font-size: 12px;
+            color: #aaa;
+            transition: transform .2s
+        }
+
+        .accord-head.open i {
+            transform: rotate(180deg)
+        }
+
+        .accord-body {
+            display: none;
+            padding: 0 0 14px;
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.6
+        }
+
+        .accord-body.open {
+            display: block
+        }
+
+        /* ─── Measurements ─── */
+        .measure-section {
+            background: var(--bg);
+            padding: 48px 0;
+            border-top: 1px solid var(--border)
+        }
+
+        .measure-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px
+        }
+
+        .measure-inner h2 {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 24px
+        }
+
+        .measure-layout {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center
+        }
+
+        .measure-img {
+            max-width: 300px;
+            object-fit: contain
+        }
+
+        .measure-boxes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px
+        }
+
+        .m-box {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 12px;
+            text-align: center
+        }
+
+        .m-box .m-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gray);
+            margin-bottom: 8px;
+            white-space: nowrap
+        }
+
+        .m-box .m-icon {
+            font-size: 24px;
+            color: #aaa;
+            margin-bottom: 8px
+        }
+
+        .m-box .m-val {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--dark)
+        }
+
+        .m-box .m-sub {
+            font-size: 11px;
+            color: #aaa
+        }
+
+        .find-size-link {
+            margin-top: 14px;
+            font-size: 13px;
+            color: #555
+        }
+
+        .find-size-link a {
+            color: var(--red);
+            font-weight: 700;
+            text-decoration: underline
+        }
+
+        /* ─── Tabs ─── */
+        .tabs-section {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            background: #fff
+        }
+
+        .tabs-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px
+        }
+
+        .tab-nav {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 24px
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #999;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            transition: all .2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none
+        }
+
+        .tab-btn.active {
+            color: var(--dark);
+            border-bottom-color: var(--dark)
+        }
+
+        .tab-btn img {
+            height: 16px;
+            opacity: .5
+        }
+
+        .tab-btn.active img {
+            opacity: 1
+        }
+
+        .tab-pane {
+            display: none
+        }
+
+        .tab-pane.active {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px
+        }
+
+        .frame-desc h3 {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--dark)
+        }
+
+        .frame-desc p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7
+        }
+
+        .specs-tbl {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        .specs-tbl tr {
+            border-bottom: 1px solid var(--border)
+        }
+
+        .specs-tbl tr:last-child {
+            border-bottom: none
+        }
+
+        .specs-tbl td {
+            padding: 10px 0;
+            font-size: 13px
+        }
+
+        .specs-tbl td:first-child {
+            color: #666;
+            font-weight: 700;
+            width: 50%
+        }
+
+        .specs-tbl td:last-child {
+            color: #333
+        }
+
+        .ship-pane.active {
+            display: block
+        }
+
+        .ship-pane p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 12px
+        }
+
+        /* ─── Recommended ─── */
+        .reco-section {
+            padding: 40px 0 60px;
+            background: #fff;
+            border-top: 1px solid var(--border)
+        }
+
+        .reco-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px
+        }
+
+        .reco-inner h2 {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px
+        }
+
+        .reco-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px
+        }
+
+        .reco-card {
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all .2s
+        }
+
+        .reco-card:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .1);
+            transform: translateY(-3px)
+        }
+
+        .reco-img {
+            background: var(--bg);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1
+        }
+
+        .reco-img img {
+            width: 100%;
+            object-fit: contain
+        }
+
+        .reco-body {
+            padding: 12px;
+            background: #fff
+        }
+
+        .reco-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 4px
+        }
+
+        .reco-sub {
+            font-size: 12px;
+            color: #aaa
+        }
+
+        .reco-price {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--red);
+            margin-top: 6px
+        }
+
+        /* ─── Reviews ─── */
+        .reviews-section {
+            padding: 40px 0 60px;
+            background: var(--bg);
+            border-top: 1px solid var(--border)
+        }
+
+        .reviews-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px
+        }
+
+        .rev-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .rev-score {
+            display: flex;
+            align-items: center;
+            gap: 16px
+        }
+
+        .rev-score .big-num {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--dark);
+            line-height: 1
+        }
+
+        .rev-score .stars-big {
+            font-size: 20px;
+            color: #f5a623;
+            display: block;
+            margin-bottom: 4px
+        }
+
+        .rev-score .rev-ct {
+            font-size: 14px;
+            color: var(--gray)
+        }
+
+        .write-rev-btn {
+            padding: 10px 22px;
+            border: 1.5px solid var(--dark);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            background: #fff;
+            transition: all .2s
+        }
+
+        .write-rev-btn:hover {
+            background: var(--dark);
+            color: #fff
+        }
+
+        .rev-list {
+            display: grid;
+            gap: 20px
+        }
+
+        .rev-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid var(--border)
+        }
+
+        .rev-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 10px
+        }
+
+        .rev-author {
+            font-weight: 800;
+            font-size: 14px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        .rev-author .vc {
+            color: #22c55e;
+            font-size: 14px
+        }
+
+        .rev-stars {
+            color: #f5a623;
+            font-size: 13px;
+            margin-bottom: 4px
+        }
+
+        .rev-date {
+            font-size: 11px;
+            color: #aaa
+        }
+
+        .rev-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 6px
+        }
+
+        .rev-body {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.6
+        }
+
+        .rev-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap
+        }
+
+        .rev-tag {
+            padding: 4px 10px;
+            background: var(--bg);
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #555;
+            border: 1px solid var(--border)
+        }
+
+        /* ─── Not found ─── */
+        .not-found {
+            text-align: center;
+            padding: 100px 20px
+        }
+
+        .not-found h2 {
+            font-size: 22px;
+            color: #555;
+            margin-bottom: 10px
+        }
+
+        .not-found a {
+            color: var(--red);
+            font-weight: 700;
+            text-decoration: underline
+        }
+
+        /* ─── Responsive ─── */
+        @media(max-width:960px) {
+            .pdp-wrap {
+                grid-template-columns: 1fr;
+                gap: 28px
+            }
+
+            .gallery {
+                position: static
+            }
+
+            .measure-layout {
+                grid-template-columns: 1fr
+            }
+
+            .measure-img {
+                display: none
+            }
+
+            .measure-boxes {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .tab-pane.active {
+                grid-template-columns: 1fr
+            }
+
+            .reco-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:600px) {
+            .pdp-wrap {
+                padding: 16px
+            }
+
+            .pdp-name {
+                font-size: 20px
+            }
+
+            .measure-boxes {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .reco-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+    </style>
 </head>
 
 <body>
     <div id="navbar-placeholder"></div>
 
-    <main class="pdp-container">
-        <div id="pdp-main-placeholder"></div>
-        <div id="pdp-specs-placeholder"></div>
-        <div id="pdp-recommendations-placeholder"></div>
+    <main>
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <div class="inner">
+                <a href="../index.html">Home</a>
+                <span class="sep">›</span>
+                <a href="#" id="bc-cat">Collection</a>
+                <span class="sep">›</span>
+                <a href="#" id="bc-brand">Brand</a>
+                <span class="sep">›</span>
+                <span class="cur" id="bc-name">Loading…</span>
+            </div>
+        </nav>
+
+        <!-- Main PDP -->
+        <div class="pdp-wrap" id="pdp-wrap">
+            <div class="not-found">
+                <h2>Loading…</h2>
+            </div>
+        </div>
+
+        <!-- Frame Measurements -->
+        <section class="measure-section" id="measure-section" style="display:none">
+            <div class="measure-inner">
+                <h2>Frame Measurements:</h2>
+                <div class="measure-layout">
+                    <img class="measure-img" id="measure-img" src="" alt="Frame measurement diagram">
+                    <div>
+                        <div class="measure-boxes" id="measure-boxes"></div>
+                        <p class="find-size-link">Need help finding your size? <a href="#">Find My Size</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About the Frame / Shipping tabs -->
+        <section class="tabs-section" id="tabs-section" style="display:none">
+            <div class="tabs-inner">
+                <div class="tab-nav">
+                    <button class="tab-btn active" data-tab="about">About the frame</button>
+                    <button class="tab-btn" data-tab="shipping">Shipping &amp; Returns</button>
+                </div>
+                <div class="tab-pane active" id="tab-about">
+                    <div class="frame-desc">
+                        <h3 id="frame-title"></h3>
+                        <p id="frame-desc-text"></p>
+                    </div>
+                    <table class="specs-tbl" id="specs-tbl"></table>
+                </div>
+                <div class="tab-pane ship-pane" id="tab-shipping">
+                    <p>We offer <strong>free standard shipping</strong> on all orders above ₹1,999.</p>
+                    <p><strong>Estimated delivery:</strong> 5-7 business days for standard shipping, 2-3 days for
+                        express.</p>
+                    <p><strong>Returns:</strong> Hassle-free 30-day returns. Items must be in original condition.
+                        Prescription lenses are non-returnable.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommended -->
+        <section class="reco-section" id="reco-section" style="display:none">
+            <div class="reco-inner">
+                <h2>Recommended For You:</h2>
+                <div class="reco-grid" id="reco-grid"></div>
+            </div>
+        </section>
+
+        <!-- Reviews -->
+        <section class="reviews-section" id="reviews-section" style="display:none">
+            <div class="reviews-inner">
+                <div class="rev-header">
+                    <div class="rev-score">
+                        <div class="big-num">4.8</div>
+                        <div>
+                            <span class="stars-big">★★★★★</span>
+                            <div class="rev-ct">23 customer reviews</div>
+                        </div>
+                    </div>
+                    <button class="write-rev-btn">Write a Review</button>
+                </div>
+                <div class="rev-list" id="rev-list"></div>
+            </div>
+        </section>
     </main>
 
     <div id="footer-placeholder"></div>
+    <div id="cart-drawer-placeholder"></div>
 
-    <!-- Custom JS -->
-    <script src="../js/main.js"></script>
+    <script src="../js/cart.js"></script>
+    <script>
+        /* ── PRODUCT DATA (Inlined for reliability) ── */
+        const PRODUCTS = [
+            { id: 1, name: "Classic Midnight", category: "Eyeglasses", brand: "Muse", price: 8134, salePrice: 6500, image: "/assets/images/products/best_seller_glasses_1_1773742904220.png", description: "Includes Basic Rx Lenses. Timeless black frames for a sophisticated look.", gender: "Men", shape: "Rectangle", color: "Black", material: "Metal", size: "Medium" },
+            { id: 2, name: "Amber Fade", category: "Sunglasses", brand: "Ottoto", price: 9545, salePrice: 7600, image: "/assets/images/products/best_seller_glasses_2_1773742924754.png", description: "Includes Premium Lenses. Stylish tortoise shell pattern with a modern twist.", gender: "Women", shape: "Cat Eye", color: "Tortoise", material: "Acetate", size: "Medium" },
+            { id: 3, name: "Modern Scholar", category: "Eyeglasses", brand: "Muse", price: 7387, image: "/assets/images/products/best_seller_glasses_1_1773742904220.png", description: "Clean lines and lightweight comfort for daily wear.", gender: "Men", shape: "Square", color: "Black", material: "Metal", size: "Large" },
+            { id: 4, name: "Coastal Breeze", category: "Sunglasses", brand: "Ray-Ban", price: 10707, salePrice: 8500, image: "/assets/images/products/best_seller_glasses_2_1773742924754.png", description: "Polarized lenses for maximum clarity and eye protection.", gender: "Men", shape: "Aviator", color: "Gold", material: "Metal", size: "Large" },
+            { id: 5, name: "Amelia E Nettle", category: "Eyeglasses", brand: "Amelia E", price: 6500, image: "/assets/images/products/amelia_e_nettle_tortoise_glasses_1773744146557.png", description: "Elegant tortoise design with a comfortable fit.", gender: "Women", shape: "Round", color: "Tortoise", material: "Acetate", size: "Small" },
+            { id: 6, name: "Amelia E Pam Purple", category: "Eyeglasses", brand: "Amelia E", price: 7200, salePrice: 5800, image: "/assets/images/products/amelia_e_pam_purple_1773744094353.png", description: "Vibrant purple frames for a bold statement.", gender: "Women", shape: "Cat Eye", color: "Purple", material: "Acetate", size: "Medium" },
+            { id: 7, name: "Muse Karri Shiny Black", category: "Eyeglasses", brand: "Muse", price: 8900, image: "/assets/images/products/muse_karri_shiny_black_glasses_1773744111567.png", description: "Sleek and professional shiny black frames.", gender: "Men", shape: "Rectangle", color: "Shiny Black", material: "Metal", size: "Large" },
+            { id: 8, name: "Ray-Ban 6363 Black Gold", category: "Eyeglasses", brand: "Ray-Ban", price: 12500, salePrice: 10000, image: "/assets/images/products/ray_ban_6363_black_gold_1773744130001.png", description: "Iconic Ray-Ban quality with a luxurious aesthetic.", gender: "Men", shape: "Rectangle", color: "Gold", material: "Metal", size: "Large" },
+            { id: 9, name: "Oakley Meta Mbappe", category: "Sunglasses", brand: "Oakley", price: 15000, image: "/assets/images/products/brand_card_oakley_meta_mbappe_1773749622633.png", description: "Sporty and high-performance sunglasses by Oakley.", gender: "Men", shape: "Wrap", color: "Black", material: "Plastic", size: "Large" },
+            { id: 10, name: "Ray-Ban Meta Smart", category: "Sunglasses", brand: "Ray-Ban", price: 25000, salePrice: 19000, image: "/assets/images/products/brand_card_rayban_meta_1773749605454.png", description: "Next-gen smart sunglasses with built-in camera and audio.", gender: "Unisex", shape: "Square", color: "Black", material: "Mixed", size: "Medium" },
+            { id: 11, name: "Oakley Holbrook", category: "Sunglasses", brand: "Oakley", price: 13000, image: "/assets/images/products/brand_card_oakley_meta_mbappe_1773749622633.png", description: "A classic design fused with modern Oakley technology.", gender: "Men", shape: "Square", color: "Brown", material: "Plastic", size: "Large" },
+            { id: 12, name: "Ottoto Bellona", category: "Eyeglasses", brand: "Ottoto", price: 9900, image: "/assets/images/products/brand_card_ottoto_couple_1773749656499.png", description: "Elegant cat-eye frames for a chic look.", gender: "Women", shape: "Cat Eye", color: "Brown", material: "Acetate", size: "Medium" }
+        ];
+
+        /* Manual component loader to avoid main.js conflicts */
+        function loadComp(id, url) {
+            fetch(url).then(r => r.text()).then(html => {
+                const el = document.getElementById(id);
+                if (el) el.innerHTML = html;
+            }).catch(e => console.warn('Failed to load component:', url));
+        }
+        loadComp('navbar-placeholder', '../components/navbar.html');
+        loadComp('footer-placeholder', '../components/footer.html');
+        loadComp('cart-drawer-placeholder', '../components/cart-drawer.html');
+    </script>
+    <script>
+        /* ── helpers ── */
+        function fmt(n) { return '₹' + n.toLocaleString('en-IN'); }
+
+        function colorHex(name) {
+            return ({
+                Black: '#111', Gray: '#888', Tortoise: '#8B4513', Brown: '#7B4F2E', Green: '#2e7d32',
+                Blue: '#1565C0', Clear: '#ddd', Gold: '#D4AF37', 'Shiny Black': '#1a1a1a',
+                Red: '#C62828', Silver: '#aaa', Purple: '#6A1B9A', Mixed: '#555'
+            })[name] || '#aaa';
+        }
+
+        const SIZE_MEASUREMENTS = {
+            Small: { lw: '46 mm / 1.81"', lh: '40 mm / 1.57"', bw: '18 mm / 0.69"', tl: '140 mm / 5.51"' },
+            Medium: { lw: '50 mm / 1.97"', lh: '42 mm / 1.65"', bw: '22 mm / 0.87"', tl: '150 mm / 5.91"' },
+            Large: { lw: '54 mm / 2.13"', lh: '44 mm / 1.73"', bw: '24 mm / 0.94"', tl: '155 mm / 6.10"' },
+            'Extra Small': { lw: '42 mm / 1.65"', lh: '38 mm / 1.5"', bw: '16 mm/.63"', tl: '135 mm / 5.31"' },
+            'Extra Large': { lw: '58 mm / 2.28"', lh: '46 mm / 1.81"', bw: '26 mm / 1.0"', tl: '160 mm / 6.3"' },
+        };
+
+        const SAMPLE_REVIEWS = [
+            { author: 'Priya M.', date: '03/12/2026', stars: 5, title: 'Absolutely Stunning', body: 'These frames are exactly as described — premium quality and the colour is gorgeous. Got so many compliments!', tags: ['True to size', 'Quality: High'] },
+            { author: 'Arjun S.', date: '02/28/2026', stars: 4, title: 'Great Value', body: 'Solid build, comfortable fit. Delivery was quick. Would recommend to anyone looking for quality frames at a good price.', tags: ['Fits as expected', 'Value for money'] },
+            { author: 'Meera R.', date: '02/15/2026', stars: 5, title: 'Love the look!', body: 'Exactly what I was looking for. The material feels premium and the design is very stylish. 5 stars!', tags: ['Stylish', 'Premium feel'] },
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            let id = parseInt(params.get('id'));
+
+            // Default to first product if ID is missing or invalid
+            if (isNaN(id)) {
+                id = 1;
+            }
+
+            const currentProduct = PRODUCTS.find(x => x.id === id);
+
+            if (!currentProduct) {
+                document.getElementById('pdp-wrap').innerHTML = `
+            <div class="not-found">
+                <p style="font-size:48px">😕</p>
+                <h2>Product not found</h2>
+                <p>The product you're looking for doesn't exist.</p><br>
+                <a href="eyeglasses.html">← Back to Eyeglasses</a> &nbsp;|&nbsp;
+                <a href="sunglasses.html">Back to Sunglasses</a>
+            </div>`;
+                return;
+            }
+
+            /* ── Page meta ── */
+            document.title = currentProduct.name + ' | My Specs Com';
+            document.getElementById('bc-cat').textContent = currentProduct.category;
+            document.getElementById('bc-cat').href = currentProduct.category === 'Sunglasses' ? 'sunglasses.html' : 'eyeglasses.html';
+            document.getElementById('bc-brand').textContent = currentProduct.brand;
+            document.getElementById('bc-name').textContent = currentProduct.name;
+
+            const dp = currentProduct.salePrice || currentProduct.price;
+            const save = currentProduct.salePrice ? Math.round((currentProduct.price - currentProduct.salePrice) / currentProduct.price * 100) : 0;
+
+            /* ── Build gallery + right panel ── */
+            document.getElementById('pdp-wrap').innerHTML = `
+    <!-- Gallery -->
+    <div class="gallery">
+        <div class="gallery-main" id="gallery-main">
+            <img id="main-img" src="${currentProduct.image}" alt="${currentProduct.name}"
+                onerror="this.src='../assets/images/products/best_seller_glasses_1_1773742904220.png'">
+            <div class="live-try"><i class="fa fa-video"></i> Live Try On</div>
+        </div>
+        <div class="gallery-sub">
+            <div class="sub-img active" data-src="${currentProduct.image}"><img src="${currentProduct.image}" alt="View 1"></div>
+            <div class="sub-img" data-src="${currentProduct.image}" style="filter:brightness(.92)"><img src="${currentProduct.image}" alt="View 2" style="filter:brightness(.92)"></div>
+            <div class="sub-img" data-src="${currentProduct.image}" style="filter:contrast(1.1)"><img src="${currentProduct.image}" alt="View 3" style="filter:contrast(1.1)"></div>
+            <div class="sub-img" data-src="${currentProduct.image}" style="filter:saturate(1.3)"><img src="${currentProduct.image}" alt="View 4" style="filter:saturate(1.3)"></div>
+        </div>
+        <button class="show-more">Show More <i class="fa fa-chevron-down"></i></button>
+        <div class="incl-bar">
+            <span class="lbl">Including:</span>
+            <span><i class="fa fa-shield-halved"></i> Scratch-resistant coating</span>
+            <span class="div">|</span>
+            <span><i class="fa fa-award"></i> 365-day warranty</span>
+            <span class="div">|</span>
+            <span><i class="fa fa-box-open"></i> Case &amp; cleaning cloth</span>
+        </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="pdp-right">
+        <div class="brand-row">
+            <div class="brand-name">${currentProduct.brand}</div>
+            <button class="wish-btn" id="wish-btn"><i class="fa-regular fa-heart"></i></button>
+        </div>
+        <h1 class="pdp-name">${currentProduct.name}</h1>
+        <div class="rating-row">
+            <span class="stars">★★★★★</span>
+            <span class="rating-count">4.8 · 23 reviews</span>
+        </div>
+
+        <div class="price-row">
+            <span class="sale-price">${fmt(dp)}</span>
+            ${currentProduct.salePrice ? `<span class="orig-price">${fmt(currentProduct.price)}</span><span class="save-tag">Save ${save}%</span>` : ''}
+        </div>
+
+        <!-- Colors -->
+        <div class="opt-label">Color — <b style="color:#333">${currentProduct.color}</b></div>
+        <div class="color-dots">
+            <div class="color-dot active" style="background:${colorHex(currentProduct.color)}" title="${currentProduct.color}"></div>
+            <div class="color-dot" style="background:#555" title="Dark Grey"></div>
+            <div class="color-dot" style="background:#c8a16b" title="Honey"></div>
+        </div>
+
+        <!-- Size -->
+        <div class="size-row">
+            <div>
+                <div class="opt-label">Size</div>
+                <div class="size-val">${currentProduct.size || 'Average'}</div>
+            </div>
+            <span class="find-size">Find Your Size</span>
+        </div>
+
+        <!-- CTAs -->
+        <button class="btn-cart" id="add-cart-btn"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+        <button class="btn-lenses">Select Lenses</button>
+
+        <!-- Accordion -->
+        <div class="accord-item">
+            <div class="accord-head" data-acc="frame"><span>Frame &amp; Measurements</span><i class="fa fa-chevron-down"></i></div>
+            <div class="accord-body" id="acc-frame">
+                <strong>Shape:</strong> ${currentProduct.shape} &nbsp;|&nbsp; <strong>Material:</strong> ${currentProduct.material} &nbsp;|&nbsp; <strong>Gender:</strong> ${currentProduct.gender}
+            </div>
+        </div>
+        <div class="accord-item">
+            <div class="accord-head" data-acc="reviews"><span>Customer Reviews (23)</span><i class="fa fa-chevron-down"></i></div>
+            <div class="accord-body" id="acc-reviews">Scroll down to read all 23 reviews from verified buyers.</div>
+        </div>
+        <div class="accord-item">
+            <div class="accord-head" data-acc="lenses"><span>Lenses &amp; Coatings Options</span><i class="fa fa-chevron-down"></i></div>
+            <div class="accord-body" id="acc-lenses">
+                Choose from: Basic Rx, Anti-Reflective (+₹800), Blue Light Blocking (+₹1,200), Polarized (+₹1,500).
+            </div>
+        </div>
+        <div class="accord-item">
+            <div class="accord-head" data-acc="insurance"><span>Apply Insurance Benefits</span><i class="fa fa-chevron-down"></i></div>
+            <div class="accord-body" id="acc-insurance">We accept major vision insurance plans. Apply coverage at checkout.</div>
+        </div>
+    </div>`;
+
+            /* ── Gallery thumb switching ── */
+            document.querySelectorAll('.sub-img').forEach(el => {
+                el.addEventListener('click', function () {
+                    document.querySelectorAll('.sub-img').forEach(s => s.classList.remove('active'));
+                    this.classList.add('active');
+                    document.getElementById('main-img').src = this.dataset.src;
+                });
+            });
+
+            /* ── Wishlist ── */
+            document.getElementById('wish-btn').addEventListener('click', function () {
+                const on = this.querySelector('i').classList.toggle('fa-solid');
+                this.querySelector('i').classList.toggle('fa-regular', !on);
+                this.classList.toggle('active', on);
+            });
+
+            /* ── Add to Cart ── */
+            document.getElementById('add-cart-btn').addEventListener('click', function () {
+                // Dynamic lookup at click time to avoid stale closure issues
+                const cid = parseInt(new URLSearchParams(window.location.search).get('id')) || 1;
+                const pToAdd = PRODUCTS.find(x => x.id === cid);
+
+                if (window.appCart) {
+                    window.appCart.addItem(pToAdd);
+                    if (typeof window.openCartDrawer === 'function') {
+                        window.openCartDrawer();
+                    }
+                }
+
+                // UI feedback
+                this.innerHTML = '<i class="fa fa-check"></i> Added!';
+                this.style.background = '#2e7d32';
+                setTimeout(() => {
+                    this.innerHTML = '<i class="fa fa-shopping-cart"></i> Add to Cart';
+                    this.style.background = '';
+                }, 2000);
+            });
+
+            /* ── Accordion ── */
+            document.querySelectorAll('.accord-head').forEach(head => {
+                head.addEventListener('click', function () {
+                    const key = this.dataset.acc;
+                    const body = document.getElementById('acc-' + key);
+                    const open = body.classList.toggle('open');
+                    this.classList.toggle('open', open);
+                });
+            });
+
+            /* ── Tabs ── */
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+                    this.classList.add('active');
+                    document.getElementById('tab-' + this.dataset.tab).classList.add('active');
+                });
+            });
+
+            /* ── Measurements ── */
+            const meas = SIZE_MEASUREMENTS[currentProduct.size] || SIZE_MEASUREMENTS.Medium;
+            document.getElementById('measure-img').src = currentProduct.image;
+            document.getElementById('measure-img').style.filter = 'grayscale(.6)';
+            document.getElementById('measure-section').style.display = 'block';
+            document.getElementById('measure-boxes').innerHTML = [
+                { title: 'Lens Width:', icon: '↔', val: meas.lw },
+                { title: 'Lens Height:', icon: '↕', val: meas.lh },
+                { title: 'Bridge Width:', icon: '⌒', val: meas.bw },
+                { title: 'Temple Length:', icon: '↗', val: meas.tl },
+            ].map(m => `<div class="m-box">
+        <div class="m-title">${m.title}</div>
+        <div class="m-icon">${m.icon}</div>
+        <div class="m-val">${m.val.split('/')[0].trim()}</div>
+        <div class="m-sub">/ ${m.val.split('/')[1]?.trim() || ''}</div>
+    </div>`).join('');
+
+            /* ── About tab ── */
+            document.getElementById('tabs-section').style.display = 'block';
+            document.getElementById('frame-title').textContent = currentProduct.name;
+            document.getElementById('frame-desc-text').textContent = currentProduct.description;
+            document.getElementById('specs-tbl').innerHTML = [
+                ['Size', currentProduct.size || 'Average'],
+                ['Material', currentProduct.material],
+                ['Color', currentProduct.color],
+                ['Shape', currentProduct.shape],
+                ['Gender', currentProduct.gender],
+                ['Category', currentProduct.category],
+                ['Progressive / Bifocal eligible', 'Yes'],
+                ['Spring Hinges', 'No'],
+                ['Type', 'Full-Rim'],
+            ].map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+
+            /* ── Recommended ── */
+            const reco = PRODUCTS.filter(x => x.id !== currentProduct.id && x.category === currentProduct.category).slice(0, 4);
+            if (reco.length) {
+                document.getElementById('reco-section').style.display = 'block';
+                document.getElementById('reco-grid').innerHTML = reco.map(r => `
+            <div class="reco-card" onclick="window.location.href='product-detail.html?id=${r.id}'">
+                <div class="reco-img"><img src="${r.image}" alt="${r.name}" onerror="this.src='../assets/images/products/best_seller_glasses_1_1773742904220.png'"></div>
+                <div class="reco-body">
+                    <div class="reco-name">${r.name}</div>
+                    <div class="reco-sub">${r.brand} · Prescription eligible</div>
+                    <div class="reco-price">${fmt(r.salePrice || r.price)}</div>
+                </div>
+            </div>`).join('');
+            }
+
+            /* ── Reviews ── */
+            document.getElementById('reviews-section').style.display = 'block';
+            document.getElementById('rev-list').innerHTML = SAMPLE_REVIEWS.map(r => `
+        <div class="rev-card">
+            <div class="rev-top">
+                <div>
+                    <div class="rev-author">${r.author} <i class="fa fa-circle-check vc"></i></div>
+                    <div class="rev-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</div>
+                    <div class="rev-date">${r.date}</div>
+                </div>
+            </div>
+            <div class="rev-title">${r.title}</div>
+            <div class="rev-body">${r.body}</div>
+            <div class="rev-tags">${r.tags.map(t => `<span class="rev-tag">${t}</span>`).join('')}</div>
+        </div>`).join('');
+        });
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,26 @@
+<!-- Product Card Component -->
+<div class="product-card" data-id="{{id}}">
+    <div class="product-image-container">
+        {{#if hasSale}}
+        <span class="sale-badge">Sale</span>
+        {{/if}}
+        <button class="wishlist-btn {{#if isFav}}active{{/if}}" data-id="{{id}}">
+            <i class="{{#if isFav}}fas{{else}}far{{/if}} fa-heart"></i>
+        </button>
+        <a href="/pages/product-detail.html?id={{id}}" class="product-card-link">
+            <img src="{{image}}" alt="{{name}}">
+        </a>
+    </div>
+    <div class="product-info-minimal">
+        <a href="/pages/product-detail.html?id={{id}}" class="product-name-link">
+            <h3>{{name}}</h3>
+        </a>
+        <div class="product-price-row">
+            {{#if hasSale}}
+            <span class="original-price">₹{{price}}</span>
+            {{/if}}
+            <span class="current-price {{#if hasSale}}sale-red{{/if}}">₹{{displayPrice}}</span>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,189 @@
+.pdp-intro {
+    padding: 80px 0;
+    background: #ffffff;
+}
+
+.pdp-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 80px;
+    align-items: flex-start;
+}
+
+.pdp-gallery {
+    background: #f9f9f9;
+    padding: 60px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pdp-gallery img {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.5s ease;
+}
+
+.pdp-gallery img:hover {
+    transform: scale(1.1);
+}
+
+.pdp-brand {
+    color: var(--primary-color);
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-size: 14px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.pdp-title {
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--black);
+}
+
+.pdp-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.pdp-stars {
+    color: var(--accent-color);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.pdp-stars span {
+    color: #888;
+    margin-left: 10px;
+}
+
+.pdp-sku {
+    color: #999;
+    font-size: 12px;
+}
+
+.pdp-pricing {
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.pdp-main-price {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+.pdp-sale-price {
+    font-size: 32px;
+    font-weight: 900;
+    color: #e21;
+}
+
+.pdp-description {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.option-group {
+    margin-bottom: 25px;
+}
+
+.option-group label {
+    display: block;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.option-pills {
+    display: flex;
+    gap: 15px;
+}
+
+.option-pills .pill {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.option-pills .pill.active {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.color-options {
+    display: flex;
+    gap: 15px;
+}
+
+.color-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 0 1px #ddd;
+    cursor: pointer;
+}
+
+.color-dot.active {
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.pdp-cta {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.pdp-cta .btn {
+    flex: 1;
+    padding: 18px;
+    font-weight: 800;
+}
+
+.pdp-trust-notes {
+    margin-top: 40px;
+    display: flex;
+    gap: 30px;
+}
+
+.pdp-trust-notes div {
+    font-size: 13px;
+    font-weight: 700;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pdp-trust-notes i {
+    color: var(--accent-color);
+}
+
+@media (max-width: 992px) {
+    .pdp-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
