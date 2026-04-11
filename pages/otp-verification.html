@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Your Account | My Specs Com</title>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .otp-container {
+            max-width: 450px;
+            margin: 100px auto;
+            background: white;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--accent-color);
+            text-align: center;
+        }
+
+        .otp-icon {
+            font-size: 50px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .otp-container h2 {
+            font-size: 26px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .otp-container p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .otp-inputs {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .otp-inputs input {
+            width: 50px;
+            height: 60px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .otp-inputs input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 10px rgba(166, 23, 30, 0.1);
+        }
+
+        .verify-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .resend-text {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .resend-text a {
+            color: var(--primary-color);
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .error-msg {
+            color: #ff4d4d;
+            font-size: 14px;
+            margin-bottom: 20px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <main>
+        <div class="otp-container">
+            <div class="otp-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h2>Verify Your Email</h2>
+            <p>We've sent a 6-digit verification code to <br><strong id="user-email">...</strong></p>
+
+            <form id="otp-form">
+                <div class="otp-inputs">
+                    <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
+                    <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
+                    <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
+                    <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
+                    <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
+                    <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
+                </div>
+                <p id="otp-error" class="error-msg"></p>
+                <button type="submit" class="verify-btn" id="verify-btn">Verify Account</button>
+            </form>
+
+            <div class="resend-text">
+                Didn't receive the code? <a href="#" id="resend-link">Resend Code</a>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Custom JS -->
+    <script src="../js/cart.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const email = urlParams.get('email');
+            if (email) {
+                document.getElementById('user-email').textContent = email;
+            }
+
+            const inputs = document.querySelectorAll('.otp-inputs input');
+            const form = document.getElementById('otp-form');
+            const verifyBtn = document.getElementById('verify-btn');
+            const errorMsg = document.getElementById('otp-error');
+
+            // Handle Input behavior (auto-focus next)
+            inputs.forEach((input, index) => {
+                input.addEventListener('input', (e) => {
+                    if (e.target.value.length === 1 && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                });
+
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+            });
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const otp = Array.from(inputs).map(input => input.value).join('');
+
+                if (otp.length < 6) {
+                    errorMsg.textContent = "Please enter all 6 digits";
+                    errorMsg.style.display = 'block';
+                    return;
+                }
+
+                verifyBtn.textContent = 'VERIFYING...';
+                verifyBtn.disabled = true;
+
+                const result = await window.appAuth.verifyOTP(email, otp);
+
+                if (result.success) {
+                    // Redirect to login page after verification as requested
+                    window.location.href = 'login-register.html?verified=true&email=' + encodeURIComponent(email);
+                } else {
+                    verifyBtn.textContent = 'Verify Account';
+                    verifyBtn.disabled = false;
+                    errorMsg.textContent = result.message || "Invalid verification code";
+                    errorMsg.style.display = 'block';
+                }
+            });
+
+            document.getElementById('resend-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('A new code has been sent to your email.');
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -5,28 +5,32 @@ class Auth {
         this.listeners = [];
     }
 
-    register(email, password, name) {
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        if (users.find(u => u.email === email)) {
-            return { success: false, message: 'User already exists' };
-        }
-        const newUser = { email, password, name, id: Date.now() };
-        users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users));
-        this.login(email, password);
+    async register(email, password, name) {
+        // Dummy Registration: Always succeed
+        console.log('Dummy Registration:', { name, email });
         return { success: true };
     }
 
-    login(email, password) {
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const user = users.find(u => u.email === email && u.password === password);
-        if (user) {
-            this.user = { id: user.id, email: user.email, name: user.name };
-            localStorage.setItem('currentUser', JSON.stringify(this.user));
-            this.notify();
-            return { success: true };
-        }
-        return { success: false, message: 'Invalid credentials' };
+    async login(email, password) {
+        // Dummy Login: Always succeed for any credentials
+        console.log('Dummy Login:', { email });
+        this.user = {
+            id: Date.now(),
+            email: email,
+            name: email.split('@')[0] || 'User'
+        };
+        localStorage.setItem('currentUser', JSON.stringify(this.user));
+        this.notify();
+        return { success: true };
+    }
+
+    async verifyOTP(email, otp) {
+        // Dummy OTP Verification: Always succeed
+        console.log('Dummy OTP Verification:', { email, otp });
+        this.user = { id: Date.now(), email, name: email.split('@')[0] || 'User' };
+        localStorage.setItem('currentUser', JSON.stringify(this.user));
+        this.notify();
+        return { success: true };
     }
 
     logout() {

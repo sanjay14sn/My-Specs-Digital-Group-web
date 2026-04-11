@@ -161,16 +161,39 @@
                 loginForm.classList.remove('active');
             });
 
+            const urlParams = new URLSearchParams(window.location.search);
+            const isVerified = urlParams.get('verified') === 'true';
+            const verifiedEmail = urlParams.get('email');
+
+            if (isVerified) {
+                const loginErr = document.getElementById('login-error');
+                loginErr.textContent = "Account verified! Please login below.";
+                loginErr.style.color = "#2ecc71";
+                loginErr.style.display = "block";
+                if (verifiedEmail) {
+                    document.getElementById('login-email').value = verifiedEmail;
+                }
+            }
+
             // Handle Login
-            loginForm.addEventListener('submit', (e) => {
+            loginForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const email = document.getElementById('login-email').value;
                 const pass = document.getElementById('login-password').value;
-                const result = window.appAuth.login(email, pass);
+
+                const btn = loginForm.querySelector('.auth-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'SIGNING IN...';
+                btn.disabled = true;
+
+                const result = await window.appAuth.login(email, pass);
+
                 if (result.success) {
                     const redirect = new URLSearchParams(window.location.search).get('redirect') || '/index.html';
                     window.location.href = redirect;
                 } else {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
                     const err = document.getElementById('login-error');
                     err.textContent = result.message;
                     err.style.display = 'block';
@@ -178,16 +201,25 @@
             });
 
             // Handle Register
-            regForm.addEventListener('submit', (e) => {
+            regForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const name = document.getElementById('reg-name').value;
                 const email = document.getElementById('reg-email').value;
                 const pass = document.getElementById('reg-password').value;
-                const result = window.appAuth.register(email, pass, name);
+
+                const btn = regForm.querySelector('.auth-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'CREATING ACCOUNT...';
+                btn.disabled = true;
+
+                const result = await window.appAuth.register(email, pass, name);
+
                 if (result.success) {
-                    const redirect = new URLSearchParams(window.location.search).get('redirect') || '/index.html';
-                    window.location.href = redirect;
+                    // Redirect to OTP verification page instead of home
+                    window.location.href = `otp-verification.html?email=${encodeURIComponent(email)}`;
                 } else {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
                     const err = document.getElementById('reg-error');
                     err.textContent = result.message;
                     err.style.display = 'block';

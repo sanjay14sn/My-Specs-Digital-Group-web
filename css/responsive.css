@@ -1,4 +1,26 @@
 /* Responsive */
+.trust-bar {
+    background: #fdfdfd;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.trust-item {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.trust-bar .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 @media (max-width: 992px) {
     .brand-cards {
         grid-template-columns: repeat(2, 1fr);
@@ -11,9 +33,6 @@
 }
 
 @media (max-width: 768px) {
-    .nav-links {
-        /* Removed display: none to allow mobile menu to function */
-    }
 
     .hero {
         height: 500px;
@@ -69,5 +88,32 @@
 
     .newsletter-form input {
         width: 100%;
+    }
+
+    /* Trust Bar Mobile */
+    .trust-bar .container {
+        flex-wrap: wrap;
+        justify-content: center !important;
+        gap: 20px;
+    }
+
+    .trust-item {
+        font-size: 11px;
+    }
+
+    /* OTP Page Mobile */
+    .otp-container {
+        margin: 50px 20px;
+        padding: 30px 20px;
+    }
+
+    .otp-inputs {
+        gap: 5px;
+    }
+
+    .otp-inputs input {
+        width: 40px;
+        height: 50px;
+        font-size: 18px;
     }
 }

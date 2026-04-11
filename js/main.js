@@ -171,6 +171,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             overlay.classList.add('active');
             drawer.classList.add('active');
             document.body.style.overflow = 'hidden';
+            document.body.classList.add('cart-open');
         }
     }
     window.openCartDrawer = openCartDrawer;
@@ -182,6 +183,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             overlay.classList.remove('active');
             drawer.classList.remove('active');
             document.body.style.overflow = 'auto';
+            document.body.classList.remove('cart-open');
         }
     }
     window.closeCartDrawer = closeCartDrawer;
@@ -360,7 +362,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 loadComponent('reviews-placeholder', 'components/reviews.html'),
                 loadComponent('insurance-placeholder', 'components/insurance.html')
             ]);
-            renderProductGrid('top-selling-placeholder', allProducts.slice(0, 4));
+            renderProductGrid('top-selling-placeholder', allProducts.slice(0, 8));
             renderProductGrid('trending-now-placeholder', allProducts.slice(4, 10));
         } else if (path.includes('sunglasses')) {
             await Promise.all([
@@ -454,6 +456,48 @@ document.addEventListener('DOMContentLoaded', async () => {
                 };
                 window.appAuth.addListener(updateNavbarAuth);
                 updateNavbarAuth(window.appAuth.user);
+            }
+
+            // Show Verified Notification
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('verified') === 'true') {
+                const toast = document.createElement('div');
+                toast.className = 'verified-toast';
+                toast.innerHTML = `
+                    <div class="toast-content">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Account Verified Successfully!</span>
+                    </div>
+                `;
+                document.body.appendChild(toast);
+
+                // Style the toast
+                Object.assign(toast.style, {
+                    position: 'fixed',
+                    bottom: '30px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    background: '#2ecc71',
+                    color: 'white',
+                    padding: '16px 30px',
+                    borderRadius: '50px',
+                    zIndex: '9999',
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    fontWeight: '700',
+                    transition: 'all 0.5s ease'
+                });
+
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateX(-50%) translateY(20px)';
+                    setTimeout(() => toast.remove(), 500);
+                }, 4000);
+
+                // Clean URL
+                window.history.replaceState({}, document.title, window.location.pathname);
             }
         }, 300);
     }
