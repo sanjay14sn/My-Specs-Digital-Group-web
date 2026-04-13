@@ -1,0 +1,246 @@
+.lenses-info-page {
+    background-color: #fff;
+    color: var(--text-color);
+}
+
+.lenses-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/lenses-hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.lenses-hero h1 {
+    font-size: 48px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.lenses-modern-intro {
+    padding: 120px 0 80px;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+        url('/images/lenses-intro-bg.png') center/cover no-repeat;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.lenses-modern-intro .intro-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.08),
+        inset 0 0 20px rgba(255, 255, 255, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glossy Shine Effect */
+.lenses-modern-intro .intro-content::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent 45%,
+            rgba(255, 255, 255, 0.2) 50%,
+            transparent 55%);
+    transform: rotate(-20deg);
+    animation: shine 8s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes shine {
+    from {
+        transform: translateX(-100%) rotate(-20deg);
+    }
+
+    to {
+        transform: translateX(100%) rotate(-20deg);
+    }
+}
+
+.section-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--primary-color), #8b0000);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 20px rgba(163, 13, 22, 0.2);
+}
+
+.lenses-modern-intro h1 {
+    font-size: 64px;
+    font-weight: 900;
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #000 0%, #333 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -2px;
+}
+
+.accent-line {
+    width: 60px;
+    height: 4px;
+    background: var(--accent-color);
+    margin: 0 auto 30px;
+    border-radius: 2px;
+}
+
+.lenses-modern-intro p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 0;
+}
+
+.brand-section {
+    padding: 100px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.brand-section:nth-child(even) {
+    background-color: #fdfdfd;
+}
+
+.brand-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.brand-section:nth-child(even) .brand-grid {
+    grid-template-columns: 1.2fr 1fr;
+}
+
+.brand-section:nth-child(even) .brand-image-order {
+    order: 2;
+}
+
+.brand-image {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.brand-image img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+}
+
+.positioning-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--accent-color);
+    color: black;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.brand-info h2 {
+    font-size: 14px;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.brand-info h3 {
+    font-size: 42px;
+    margin-bottom: 30px;
+    font-weight: 900;
+}
+
+.brand-categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.category-group h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #000;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 12px;
+}
+
+.category-group ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.category-group li {
+    font-size: 15px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.category-group li::before {
+    content: '•';
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.brand-description {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px dashed #ddd;
+    font-style: italic;
+    color: #555;
+}
+
+@media (max-width: 992px) {
+    .brand-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .brand-section:nth-child(even) .brand-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .brand-section:nth-child(even) .brand-image-order {
+        order: 0;
+    }
+
+    .brand-image img {
+        height: 350px;
+    }
+
+    .brand-info h3 {
+        font-size: 32px;
+    }
+}
