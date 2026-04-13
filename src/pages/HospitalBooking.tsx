@@ -23,7 +23,7 @@ type Step = 'search' | 'list' | 'details' | 'book' | 'confirm';
 const HospitalBooking: React.FC = () => {
     const [currentStep, setCurrentStep] = useState<Step>('search');
     const [pinCode, setPinCode] = useState('560066');
-    const [filteredHospitals, setFilteredHospitals] = useState<Hospital[]>(HOSPITALS);
+    const [filteredHospitals, setFilteredHospitals] = useState<Hospital[]>(HOSPITALS.filter(h => !h.isBranded));
     const [selectedHospital, setSelectedHospital] = useState<Hospital | null>(null);
     const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
     const [bookingData, setBookingData] = useState({
@@ -36,18 +36,18 @@ const HospitalBooking: React.FC = () => {
     });
 
     useEffect(() => {
-        // Initialize with default PIN results
-        const results = HOSPITALS.filter(h => h.pinCode.startsWith('560'));
-        setFilteredHospitals(results.length > 0 ? results : HOSPITALS);
+        // Initialize with default PIN results and filter out branded ones
+        const results = HOSPITALS.filter(h => h.pinCode.startsWith('560') && !h.isBranded);
+        setFilteredHospitals(results.length > 0 ? results : HOSPITALS.filter(h => !h.isBranded));
     }, []);
 
     const handleSearch = () => {
         if (!pinCode) {
-            setFilteredHospitals(HOSPITALS);
+            setFilteredHospitals(HOSPITALS.filter(h => !h.isBranded));
             return;
         }
-        const results = HOSPITALS.filter(h => h.pinCode.startsWith(pinCode.substring(0, 3)));
-        setFilteredHospitals(results.length > 0 ? results : HOSPITALS);
+        const results = HOSPITALS.filter(h => h.pinCode.startsWith(pinCode.substring(0, 3)) && !h.isBranded);
+        setFilteredHospitals(results.length > 0 ? results : HOSPITALS.filter(h => !h.isBranded));
     };
 
     const handleHospitalSelect = (hospital: Hospital) => {

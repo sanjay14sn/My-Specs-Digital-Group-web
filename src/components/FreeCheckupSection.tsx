@@ -19,15 +19,15 @@ const FreeCheckupSection: React.FC = () => {
                             <li><CheckCircle2 size={18} /> Zero cost for your first visit</li>
                         </ul>
                         <div className="promo-actions">
-                            <Link to="/find-hospital" className="btn btn-primary">
+                            <Link to="/hospital-booking" className="btn btn-primary">
                                 <Calendar size={18} />
-                                Book Free Checkup
+                                BOOK FREE CHECKUP
                             </Link>
                             <span className="offer-note">*Offer valid for new registrations</span>
                         </div>
                     </div>
                     <div className="insurance-image">
-                        <img src="/assets/images/free-eye-checkup-promo.png" alt="Free Eye Checkup" />
+                        <img src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&q=80&w=1200" alt="Free Eye Checkup" />
                     </div>
                 </div>
             </div>

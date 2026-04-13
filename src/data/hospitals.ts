@@ -24,6 +24,7 @@ export interface Hospital {
     doctors: Doctor[];
     services: Service[];
     image?: string;
+    isBranded: boolean;
 }
 
 export const HOSPITALS: Hospital[] = [
@@ -44,7 +45,8 @@ export const HOSPITALS: Hospital[] = [
             { name: "Retina Specialist", description: "Advanced retinal care" },
             { name: "Glaucoma Care", description: "Comprehensive glaucoma management" }
         ],
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=400"
+        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=400",
+        isBranded: false
     },
     {
         id: 2,
@@ -63,7 +65,8 @@ export const HOSPITALS: Hospital[] = [
             { name: "LASIK", description: "Laser vision correction" },
             { name: "Cataract Surgery", description: "Modern cataract removal" }
         ],
-        image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=400"
+        image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=400",
+        isBranded: true
     },
     {
         id: 3,
@@ -82,7 +85,8 @@ export const HOSPITALS: Hospital[] = [
             { name: "General Checkup", description: "Routine eye examination" },
             { name: "Diabetic Retinopathy", description: "Diabetes-related eye care" }
         ],
-        image: "https://images.unsplash.com/photo-1586773860418-d3b9a8ec817f?auto=format&fit=crop&q=80&w=400"
+        image: "https://images.unsplash.com/photo-1586773860418-d3b9a8ec817f?auto=format&fit=crop&q=80&w=400",
+        isBranded: false
     },
     {
         id: 4,
@@ -101,7 +105,8 @@ export const HOSPITALS: Hospital[] = [
             { name: "Pediatric Eye Care", description: "Specialized care for children" },
             { name: "Optical Shop", description: "Wide range of eyewear" }
         ],
-        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=400"
+        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=400",
+        isBranded: true
     },
     {
         id: 5,
@@ -120,7 +125,8 @@ export const HOSPITALS: Hospital[] = [
             { name: "Cosmetic Surgery", description: "Eye-related cosmetic procedures" },
             { name: "Dry Eye Clinic", description: "Treatment for dry eye syndrome" }
         ],
-        image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=400"
+        image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=400",
+        isBranded: false
     },
     {
         id: 6,
@@ -139,6 +145,7 @@ export const HOSPITALS: Hospital[] = [
             { name: "Low Vision Aids", description: "Help for low vision patients" },
             { name: "Eye Pharmacy", description: "Specialized ophthalmic pharmacy" }
         ],
-        image: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&q=80&w=400"
+        image: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&q=80&w=400",
+        isBranded: false
     }
 ];

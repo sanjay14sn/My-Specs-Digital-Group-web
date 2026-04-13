@@ -26,6 +26,15 @@ const SignupPage: React.FC = () => {
         }, 1500);
     };
 
+    const handleSocialLogin = (platform: 'Google' | 'GitHub') => {
+        setIsLoading(true);
+        setTimeout(() => {
+            login(`${platform.toLowerCase()}@example.com`, `${platform} User`);
+            setIsLoading(false);
+            navigate('/profile');
+        }, 1200);
+    };
+
     return (
         <div className="auth-container">
             <motion.div
@@ -94,10 +103,10 @@ const SignupPage: React.FC = () => {
                 </form>
 
                 <div className="social-login">
-                    <button className="social-btn">
+                    <button className="social-btn" onClick={() => handleSocialLogin('Google')}>
                         <Chrome size={18} /> Sign up with Google
                     </button>
-                    <button className="social-btn">
+                    <button className="social-btn" onClick={() => handleSocialLogin('GitHub')}>
                         <Github size={18} /> Sign up with GitHub
                     </button>
                 </div>
