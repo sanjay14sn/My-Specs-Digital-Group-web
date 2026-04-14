@@ -168,6 +168,40 @@
     border: 1px dashed #ffd54f;
 }
 
+.category-filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.filter-btn {
+    padding: 12px 24px;
+    border: 2px solid #eee;
+    background: white;
+    border-radius: 50px;
+    font-weight: 700;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-btn:hover {
+    border-color: var(--hospital-primary);
+    color: var(--hospital-primary);
+    background: #fffafa;
+}
+
+.filter-btn.active {
+    background: var(--hospital-primary);
+    color: white;
+    border-color: var(--hospital-primary);
+    box-shadow: 0 10px 20px rgba(142, 0, 0, 0.2);
+}
+
 /* Step 2: Listing */
 .listing-step .listing-header {
     display: flex;

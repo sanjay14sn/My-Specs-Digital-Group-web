@@ -10,6 +10,8 @@ import StoresPage from './pages/StoresPage';
 import ProfilePage from './pages/ProfilePage';
 import LensSelection from './pages/LensSelection';
 import HospitalBooking from './pages/HospitalBooking';
+import HomeTryOn from './pages/HomeTryOn';
+import SupportPage from './pages/SupportPage';
 import LensesPage from './pages/LensesPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -39,6 +41,8 @@ function App() {
           <Route path="/account" element={<ProfilePage />} />
           <Route path="/product/:id/lenses" element={<LensSelection />} />
           <Route path="/find-hospital" element={<HospitalBooking />} />
+          <Route path="/home-try-on" element={<HomeTryOn />} />
+          <Route path="/connect" element={<SupportPage />} />
           <Route path="/lenses" element={<LensesPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />

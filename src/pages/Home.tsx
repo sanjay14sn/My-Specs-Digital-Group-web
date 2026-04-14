@@ -8,6 +8,7 @@ import QuizSection from '../components/QuizSection';
 import ReviewsSection from '../components/ReviewsSection';
 import StoresBanner from '../components/StoresBanner';
 import FeaturedCategories from '../components/FeaturedCategories';
+import ServicesSection from '../components/ServicesSection';
 import { PRODUCTS } from '../data/products';
 
 const Home: React.FC = () => {
@@ -18,12 +19,13 @@ const Home: React.FC = () => {
         <div className="home-page">
             <Hero />
             <TrustBar />
-            <FeaturedCategories />
+            <ServicesSection />
             <ProductGrid
                 title="Our Top Selling Frames"
                 products={topSelling}
                 subtitle="The styles everyone's loving right now"
             />
+            <FeaturedCategories />
             <BrandMarquee />
             <ProductGrid
                 title="Trending Now"

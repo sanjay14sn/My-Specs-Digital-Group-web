@@ -1,0 +1,261 @@
+.prescription-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.prescription-header {
+    margin-bottom: 30px;
+}
+
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.prescription-steps-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 25px;
+}
+
+.upload-instruction {
+    font-size: 15px;
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.upload-dropzone {
+    border: 2px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    background: #f8fafc;
+    margin-bottom: 30px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.upload-dropzone:hover {
+    border-color: #2563eb;
+    background: #f1f5f9;
+}
+
+.plus-icon {
+    width: 48px;
+    height: 48px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    color: #1e293b;
+}
+
+.upload-text {
+    font-size: 16px;
+    color: #475569;
+    margin-bottom: 5px;
+}
+
+.upload-text span {
+    color: #1e293b;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.max-size {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: #1e293b;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.checkbox-item input {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1px solid #cbd5e1;
+}
+
+.comment-section h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 12px;
+}
+
+.comment-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #1e293b;
+    margin-bottom: 30px;
+    resize: vertical;
+}
+
+.prescription-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-continue {
+    flex: 1;
+    background: #2563eb;
+    color: white;
+    padding: 14px 25px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+}
+
+.btn-send-later {
+    flex: 1;
+    background: white;
+    color: #2563eb;
+    padding: 14px 25px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    border: 2px solid #2563eb;
+}
+
+/* Method Options */
+.method-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.method-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: white;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.method-card:hover {
+    border-color: #2563eb;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.method-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.method-card p {
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* Online Form */
+.form-help-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    text-decoration: underline;
+}
+
+.prescription-table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 25px;
+}
+
+.prescription-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border: 1px solid #f1f5f9;
+}
+
+.prescription-table th {
+    background: #f8fafc;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    border: 1px solid #f1f5f9;
+}
+
+.prescription-table td {
+    padding: 12px 15px;
+    border: 1px solid #f1f5f9;
+}
+
+.prescription-table select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #1e293b;
+    outline: none;
+}
+
+.pd-selection-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.pd-selection-row label {
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.pd-selection-row select {
+    padding: 10px 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #1e293b;
+    min-width: 120px;
+}

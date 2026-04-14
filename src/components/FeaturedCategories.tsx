@@ -49,7 +49,6 @@ const FeaturedCategories: React.FC = () => {
             <div className="container">
                 <div className="section-header text-center">
                     <h2 className="section-title">Eyewear for everyone and every need.</h2>
-                    <p className="section-subtitle">Our featured categories</p>
                 </div>
 
                 <div className="featured-categories-grid">

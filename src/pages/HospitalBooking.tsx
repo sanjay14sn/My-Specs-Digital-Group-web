@@ -12,7 +12,9 @@ import {
     CheckCircle,
     Activity,
     Stethoscope,
-    Navigation
+    Navigation,
+    Filter,
+    Users
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HOSPITALS, Hospital, Doctor } from '../data/hospitals';
@@ -22,7 +24,8 @@ type Step = 'search' | 'list' | 'details' | 'book' | 'confirm';
 
 const HospitalBooking: React.FC = () => {
     const [currentStep, setCurrentStep] = useState<Step>('search');
-    const [pinCode, setPinCode] = useState('560066');
+    const [pinCode, setPinCode] = useState('600007');
+    const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const [filteredHospitals, setFilteredHospitals] = useState<Hospital[]>(HOSPITALS.filter(h => !h.isBranded));
     const [selectedHospital, setSelectedHospital] = useState<Hospital | null>(null);
     const [selectedDoctor, setSelectedDoctor] = useState<Doctor | null>(null);
@@ -35,19 +38,34 @@ const HospitalBooking: React.FC = () => {
         issue: ''
     });
 
+    const filterResults = (queryPin: string, category: string) => {
+        let results = HOSPITALS;
+
+        // Filter out branded if needed (keeping same logic as before)
+        results = results.filter(h => !h.isBranded);
+
+        // Filter by PIN
+        if (queryPin) {
+            results = results.filter(h => h.pinCode.startsWith(queryPin.substring(0, 3)));
+        }
+
+        // Filter by Category
+        if (category !== 'All') {
+            results = results.filter(h => h.category === category);
+        }
+
+        return results;
+    };
+
     useEffect(() => {
-        // Initialize with default PIN results and filter out branded ones
-        const results = HOSPITALS.filter(h => h.pinCode.startsWith('560') && !h.isBranded);
-        setFilteredHospitals(results.length > 0 ? results : HOSPITALS.filter(h => !h.isBranded));
-    }, []);
+        // Initialize with default PIN results
+        const results = filterResults(pinCode, selectedCategory);
+        setFilteredHospitals(results.length > 0 ? results : filterResults('', selectedCategory));
+    }, [selectedCategory]);
 
     const handleSearch = () => {
-        if (!pinCode) {
-            setFilteredHospitals(HOSPITALS.filter(h => !h.isBranded));
-            return;
-        }
-        const results = HOSPITALS.filter(h => h.pinCode.startsWith(pinCode.substring(0, 3)) && !h.isBranded);
-        setFilteredHospitals(results.length > 0 ? results : HOSPITALS.filter(h => !h.isBranded));
+        const results = filterResults(pinCode, selectedCategory);
+        setFilteredHospitals(results.length > 0 ? results : filterResults('', selectedCategory));
     };
 
     const handleHospitalSelect = (hospital: Hospital) => {
@@ -64,7 +82,6 @@ const HospitalBooking: React.FC = () => {
     const handleConfirmBooking = (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Save appointment to localStorage
         if (selectedHospital) {
             const newAppointment = {
                 id: `APT-${Math.floor(Math.random() * 10000)}`,
@@ -73,7 +90,7 @@ const HospitalBooking: React.FC = () => {
                 date: bookingData.date,
                 time: bookingData.time,
                 status: 'Confirmed',
-                type: 'Eye Checkup'
+                type: 'Checkup'
             };
 
             const existingAppointments = JSON.parse(localStorage.getItem('my_appointments') || '[]');
@@ -89,6 +106,12 @@ const HospitalBooking: React.FC = () => {
         '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM'
     ];
 
+    const categories = [
+        { name: 'All', icon: <Filter size={18} /> },
+        { name: 'Eyes', icon: <Activity size={18} /> },
+        { name: 'Pediatrician', icon: <Users size={18} /> }
+    ];
+
     return (
         <div className="hospital-booking-page">
             <div className="hospital-container">
@@ -102,8 +125,8 @@ const HospitalBooking: React.FC = () => {
                             className="search-step"
                         >
                             <div className="search-intro">
-                                <h1>Find Eye Hospitals Near You</h1>
-                                <p>Book a free eye checkup at a top-rated specialty hospital in your area.</p>
+                                <h1>Find Top Rated Hospitals Near You</h1>
+                                <p>Book a free consultation at specialty hospitals in your area.</p>
 
                                 <div className="search-box">
                                     <div className="input-group">
@@ -112,7 +135,7 @@ const HospitalBooking: React.FC = () => {
                                             <input
                                                 type="text"
                                                 className="pin-input"
-                                                placeholder="e.g. 560066"
+                                                placeholder="e.g. 600007"
                                                 value={pinCode}
                                                 onChange={(e) => setPinCode(e.target.value)}
                                                 maxLength={6}
@@ -128,9 +151,22 @@ const HospitalBooking: React.FC = () => {
                                     </button>
                                 </div>
 
+                                <div className="category-filters">
+                                    {categories.map((cat) => (
+                                        <button
+                                            key={cat.name}
+                                            className={`filter-btn ${selectedCategory === cat.name ? 'active' : ''}`}
+                                            onClick={() => setSelectedCategory(cat.name)}
+                                        >
+                                            {cat.icon}
+                                            {cat.name}
+                                        </button>
+                                    ))}
+                                </div>
+
                                 <div className="free-checkup-banner">
                                     <Activity size={20} />
-                                    <span>Note: Your eye check-up is absolutely <strong>FREE</strong></span>
+                                    <span>Note: Your first consultation is absolutely <strong>FREE</strong></span>
                                 </div>
                             </div>
 
@@ -145,6 +181,7 @@ const HospitalBooking: React.FC = () => {
                                         <div key={hospital.id} className="hospital-card" onClick={() => handleHospitalSelect(hospital)}>
                                             <div className="card-image">
                                                 <img src={hospital.image} alt={hospital.name} />
+                                                <div className="hospital-type-badge">{hospital.category}</div>
                                             </div>
                                             <div className="card-info">
                                                 <div className="card-top">
@@ -205,6 +242,7 @@ const HospitalBooking: React.FC = () => {
                                     <div key={hospital.id} className="hospital-card" onClick={() => handleHospitalSelect(hospital)}>
                                         <div className="card-image">
                                             <img src={hospital.image} alt={hospital.name} />
+                                            <div className="hospital-type-badge">{hospital.category}</div>
                                         </div>
                                         <div className="card-info">
                                             <div className="card-top">
@@ -254,7 +292,7 @@ const HospitalBooking: React.FC = () => {
                             <div className="details-hero">
                                 <img src={selectedHospital.image} alt={selectedHospital.name} />
                                 <div className="hero-overlay">
-                                    <button className="back-btn" style={{ color: 'white' }} onClick={() => setCurrentStep('list')}>
+                                    <button className="back-btn" style={{ color: 'white' }} onClick={() => setCurrentStep('search')}>
                                         <ChevronLeft size={20} /> Back to list
                                     </button>
                                     <h2>{selectedHospital.name}</h2>
@@ -262,6 +300,7 @@ const HospitalBooking: React.FC = () => {
                                         <MapPin size={16} />
                                         {selectedHospital.address}
                                     </div>
+                                    <div className="hospital-category-tag">{selectedHospital.category}</div>
                                 </div>
                             </div>
 
@@ -392,7 +431,7 @@ const HospitalBooking: React.FC = () => {
                                         />
                                     </div>
                                     <div className="form-field field-full">
-                                        <label>Eye Issue (Optional)</label>
+                                        <label>Health Issue (Optional)</label>
                                         <textarea
                                             rows={2}
                                             placeholder="Briefly describe your issue..."
@@ -406,7 +445,7 @@ const HospitalBooking: React.FC = () => {
                                         </button>
                                         <p style={{ textAlign: 'center', fontSize: '12px', color: '#888', marginTop: '15px' }}>
                                             By confirming, you agree to our terms of service and privacy policy.
-                                            Checkups are free of charge.
+                                            Consultations are free of charge.
                                         </p>
                                     </div>
                                 </form>

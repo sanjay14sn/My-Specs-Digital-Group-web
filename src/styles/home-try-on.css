@@ -1,0 +1,348 @@
+.home-try-on-page {
+    min-height: 100vh;
+    background-color: #ffffff;
+    padding: 60px 20px;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+}
+
+.tryon-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Stepper */
+.tryon-stepper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 60px;
+    gap: 80px;
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.step-circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-weight: 700;
+    color: #999;
+    transition: all 0.3s ease;
+}
+
+.step-item.active .step-circle {
+    border-color: #A6171E;
+    background: #fff;
+    color: #A6171E;
+    box-shadow: 0 0 0 5px rgba(166, 23, 30, 0.1);
+}
+
+.step-circle.completed {
+    background: #A6171E;
+    border-color: #A6171E;
+    color: #fff;
+}
+
+.step-label {
+    text-align: center;
+    max-width: 100px;
+}
+
+.step-title {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    line-height: 1.2;
+}
+
+.step-subtitle {
+    display: block;
+    font-size: 11px;
+    color: #999;
+    margin-top: 4px;
+}
+
+.step-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 22.5px;
+    left: 100%;
+    width: 80px;
+    height: 2px;
+    background: #ccc;
+    z-index: -1;
+}
+
+.step-item.completed::after {
+    background: #A6171E;
+}
+
+/* Booking Content */
+.booking-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+/* Calendar Card */
+.calendar-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    flex: 1;
+    border: 1px solid #eee;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.month-nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.month-nav h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.nav-btn:hover {
+    color: #333;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.day-header {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: #A6171E;
+    padding-bottom: 10px;
+}
+
+.calendar-day {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #666;
+    border: 1px solid #eee;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.calendar-day:hover:not(.disabled) {
+    background: #f9ecec;
+    border-color: #A6171E;
+}
+
+.calendar-day.selected {
+    border: 2px solid #7a0d12;
+    border-radius: 50%;
+    font-weight: 700;
+    color: #7a0d12;
+    height: 40px;
+    width: 40px;
+    margin: auto;
+}
+
+.calendar-day.has-slots {
+    background: #f9ecec;
+    color: #333;
+}
+
+.calendar-day.disabled {
+    color: #ddd;
+    cursor: not-allowed;
+}
+
+/* Time Slots */
+.time-slots-container {
+    width: 200px;
+}
+
+.time-slots-container h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.time-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.time-slot {
+    padding: 12px 20px;
+    background: #f9ecec;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #A6171E;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.time-slot:hover {
+    background: #f1d8d8;
+}
+
+.time-slot.selected {
+    background: #A6171E;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(166, 23, 30, 0.3);
+}
+
+/* Appointment Info Section */
+.appointment-info {
+    margin-top: 40px;
+    background: #f5f5f5;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.appointment-info h4 {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.info-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.info-text a {
+    color: #A6171E;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Confirmation Message */
+.confirmation-card {
+    background: #fff9f0;
+    border-radius: 12px;
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 25px;
+    border-left: 5px solid #A6171E;
+}
+
+.check-circle {
+    width: 40px;
+    height: 40px;
+    background: #4caf50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.confirmation-details h5 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.confirmation-details p {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Next Button */
+.tryon-actions {
+    margin-top: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-next {
+    background: #A6171E;
+    color: #fff !important;
+    padding: 12px 40px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-next:hover {
+    background: #7a0d12;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(166, 23, 30, 0.3);
+}
+
+@media (max-width: 768px) {
+    .booking-content {
+        flex-direction: column;
+    }
+
+    .time-slots-container {
+        width: 100%;
+    }
+
+    .time-grid {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .time-slot {
+        flex: 1 1 calc(50% - 10px);
+    }
+
+    .tryon-stepper {
+        gap: 30px;
+    }
+
+    .step-item:not(:last-child)::after {
+        width: 30px;
+    }
+}
