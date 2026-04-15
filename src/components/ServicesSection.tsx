@@ -29,7 +29,7 @@ const ServicesSection: React.FC = () => {
         {
             id: 'whatsapp',
             title: 'Service hub',
-            badge: '84478-21891',
+            badge: '8190000239',
             badgeColor: '#A6171E', // Theme Red
             icon: MessageCircle,
             image: '/images/services/repair.png',
@@ -39,7 +39,7 @@ const ServicesSection: React.FC = () => {
         {
             id: 'expert-connect',
             title: 'Connect with your Experts',
-            badge: '99998-99998',
+            badge: '8190000232',
             badgeColor: '#bfa145', // Gold/Yellow
             icon: Headphones,
             image: '/images/services/support.png',
